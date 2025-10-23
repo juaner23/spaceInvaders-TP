@@ -1,4 +1,4 @@
-// src/game/Invasor.java
+
 package game;
 
 public class Invasor {

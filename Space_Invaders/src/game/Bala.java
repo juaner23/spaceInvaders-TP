@@ -1,4 +1,4 @@
-// src/game/Bala.java
+
 package game;
 
 public class Bala {

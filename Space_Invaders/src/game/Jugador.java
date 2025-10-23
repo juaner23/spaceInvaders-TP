@@ -1,4 +1,4 @@
-// src/game/Jugador.java
+
 package game;
 
 public class Jugador {
@@ -22,6 +22,7 @@ public class Jugador {
     public int obtenerVidas() { return vidas; }
     public int obtenerAncho() { return ANCHO_JUGADOR; }
     public int obtenerAltura() { return ALTURA_JUGADOR; }
+
 
     public void establecerPosicionX(double posicionX) {
         this.posicionX = posicionX;

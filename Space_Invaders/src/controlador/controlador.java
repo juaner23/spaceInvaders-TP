@@ -4,6 +4,10 @@ package controlador;
 import game.Jugador;
 import game.Bala;
 import game.Invasor;
+import view.JugadorView;
+import view.InvasorView;
+import view.BalaView;
+import view.PartidaView;
 
 import javax.swing.Timer;
 import java.awt.Rectangle;
@@ -124,4 +128,35 @@ public class controlador {
     public int obtenerPuntaje() { return puntaje; }
     public int obtenerVidas() { return jugador.obtenerVidas(); }
     public int obtenerNivel() { return nivel; }
+
+    // Métodos para vistas (inmutables)
+    public JugadorView obtenerJugadorView() {
+        int[][] pos = {{(int)jugador.obtenerPosicionX(), (int)jugador.obtenerPosicionX() + jugador.obtenerAncho()},
+                {(int)jugador.obtenerPosicionY(), (int)jugador.obtenerPosicionY() + jugador.obtenerAltura()}};
+        return new JugadorView(jugador.obtenerVidas(), pos, "Bateria.png");
+    }
+
+    public List<InvasorView> obtenerInvasoresView() {
+        List<InvasorView> vistas = new ArrayList<>();
+        for (Invasor inv : invasores) {
+            int[][] pos = {{(int)inv.getX(), (int)inv.getX() + inv.getAncho()},
+                    {(int)inv.getY(), (int)inv.getY() + inv.getAlto()}};
+            vistas.add(new InvasorView(pos, inv.estaVivo(), "Nave.png"));
+        }
+        return vistas;
+    }
+
+    public List<BalaView> obtenerBalasView() {
+        List<BalaView> vistas = new ArrayList<>();
+        for (Bala b : balas) {
+            int[][] pos = {{(int)b.getX(), (int)b.getX() + b.getAncho()},
+                    {(int)b.getY(), (int)b.getY() + b.getAlto()}};
+            vistas.add(new BalaView(pos, b.estaActiva(), "Proyectil.png"));
+        }
+        return vistas;
+    }
+
+    public PartidaView obtenerPartidaView() {
+        return new PartidaView(puntaje, nivel, jugador.obtenerVidas());
+    }
 }
