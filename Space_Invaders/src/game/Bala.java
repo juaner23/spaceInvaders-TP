@@ -1,6 +1,6 @@
 
 package game;
-
+import java.awt.Rectangle;
 public class Bala {
     private double x, y;
     private final int ancho = 4, alto = 12;
@@ -21,4 +21,14 @@ public class Bala {
     public int getAncho() { return ancho; }
     public int getAlto() { return alto; }
     public int getLanzador() { return lanzador; }
+
+
+
+
+    public boolean colisionaCon(Invasor inv) {
+        if (!estaActiva() || getLanzador() != 0) return false;
+        Rectangle rB = new Rectangle((int)getX(), (int)getY(), getAncho(), getAlto());
+        Rectangle rI = new Rectangle((int)inv.getX(), (int)inv.getY(), inv.getAncho(), inv.getAlto());
+        return rB.intersects(rI);
+    }
 }

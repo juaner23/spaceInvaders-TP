@@ -1,9 +1,6 @@
-
+// src/Gui/GamePanel.java
 package Gui;
 
-import game.Jugador;
-import game.Bala;
-import game.Invasor;
 import controlador.controlador;
 
 import javax.swing.Timer;
@@ -45,36 +42,38 @@ public class GamePanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        Jugador j = ctrl.obtenerJugador();
+        var jv = ctrl.obtenerJugadorView();
         if (imgBateria != null)
-            g.drawImage(imgBateria, (int) j.obtenerPosicionX(), (int) j.obtenerPosicionY(), j.obtenerAncho(), j.obtenerAltura(), null);
+            g.drawImage(imgBateria, jv.viewPosicion()[0], jv.viewPosicion()[1], 50, 30, null);
         else {
             g.setColor(Color.BLUE);
-            g.fillRect((int) j.obtenerPosicionX(), (int) j.obtenerPosicionY(), j.obtenerAncho(), j.obtenerAltura());
+            g.fillRect(jv.viewPosicion()[0], jv.viewPosicion()[1], 50, 30);
         }
 
-        for (Invasor inv : ctrl.obtenerInvasores()) {
-            if (!inv.estaVivo()) continue;
+        for (var iv : ctrl.obtenerInvasoresView()) {
+            if (!iv.viewEstado()) continue;
             if (imgNave != null)
-                g.drawImage(imgNave, (int) inv.getX(), (int) inv.getY(), inv.getAncho(), inv.getAlto(), null);
+                g.drawImage(imgNave, iv.viewPosicion()[0], iv.viewPosicion()[1], 40, 30, null);
             else {
                 g.setColor(Color.RED);
-                g.fillRect((int) inv.getX(), (int) inv.getY(), inv.getAncho(), inv.getAlto());
+                g.fillRect(iv.viewPosicion()[0], iv.viewPosicion()[1], 40, 30);
             }
         }
 
-        for (Bala b : ctrl.obtenerBalas()) {
+        for (var bv : ctrl.obtenerBalasView()) {
+            if (!bv.viewEstado()) continue;
             if (imgProyectil != null)
-                g.drawImage(imgProyectil, (int) b.getX(), (int) b.getY(), b.getAncho(), b.getAlto(), null);
+                g.drawImage(imgProyectil, bv.viewPosicion()[0], bv.viewPosicion()[1], 4, 12, null);
             else {
                 g.setColor(Color.YELLOW);
-                g.fillRect((int) b.getX(), (int) b.getY(), b.getAncho(), b.getAlto());
+                g.fillRect(bv.viewPosicion()[0], bv.viewPosicion()[1], 4, 12);
             }
         }
 
+        var pv = ctrl.obtenerPartidaView();
         g.setColor(Color.WHITE);
-        g.drawString("Puntos: " + ctrl.obtenerPuntaje(), 350, 20);
-        g.drawString("Nivel: " + ctrl.obtenerNivel(), 10, 20);
-        g.drawString("Vidas: " + ctrl.obtenerVidas(), 680, 20);
+        g.drawString("Puntos: " + pv.viewPuntaje(), 350, 20);
+        g.drawString("Nivel: " + pv.viewNivel(), 10, 20);
+        g.drawString("Vidas: " + pv.viewVidas(), 680, 20);
     }
 }
