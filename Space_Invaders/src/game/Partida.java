@@ -1,4 +1,4 @@
-// src/game/Partida.java
+
 package game;
 
 import view.JugadorView;

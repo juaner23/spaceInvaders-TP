@@ -1,4 +1,4 @@
-// src/Gui/GamePanel.java
+
 package Gui;
 
 import controlador.controlador;

@@ -1,4 +1,4 @@
-// src/controlador/controlador.java
+
 package controlador;
 
 import game.Partida;

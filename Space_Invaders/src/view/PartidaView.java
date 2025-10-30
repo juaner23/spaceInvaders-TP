@@ -1,4 +1,4 @@
-// src/view/PartidaView.java
+
 package view;
 
 public class PartidaView {
