@@ -2,6 +2,10 @@
 package controlador;
 
 import game.Partida;
+//empieza mi codigo -fati
+import game.Ranking;
+import view.RankingView;
+//termino mi codigo -fati
 import view.JugadorView;
 import view.InvasorView;
 import view.BalaView;
@@ -23,6 +27,9 @@ public class controlador {
 
     private Partida partida = new Partida();
     private Timer temporizador;
+    //empieza mi codigo -fati
+    private Ranking ranking;
+    //termino mi codigo -fati
 
     private controlador() {}
 
@@ -53,4 +60,21 @@ public class controlador {
     public int obtenerPuntaje() { return partida.obtenerPuntaje(); }
     public int obtenerVidas() { return partida.obtenerJugador().obtenerVidas(); }
     public int obtenerNivel() { return partida.obtenerNivel(); }
+
+    //empieza mi codigo -fati 
+    public void setRanking(Ranking r) {
+        this.ranking = r;
+    }
+
+    public void gameOver() {
+        if (ranking != null) {
+            ranking.guardarPuntajeBest("Manuela", partida.obtenerPuntaje());
+        }
+    }
+
+    public RankingView obtenerRankingView(int n) {
+        return new RankingView(ranking.topN(n));
+    }
+
+    //termino mi codigo -fati
 }
