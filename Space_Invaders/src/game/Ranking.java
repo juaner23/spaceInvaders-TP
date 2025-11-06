@@ -1,6 +1,6 @@
 package game;
 
-//empieza mi codigo -fati 
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -47,8 +47,10 @@ public class Ranking {
                     puntajes.put(partes[0], Integer.parseInt(partes[1]));
                 }
             }
+
+
         } catch (IOException e) {
-            // Si el archivo no existe, empieza vacío
+            // Si el archivo no existe, empieza vacío (o deberia)
         }
     }
 
@@ -62,4 +64,3 @@ public class Ranking {
         }
     }
 }
-//termino mi codigo -fati

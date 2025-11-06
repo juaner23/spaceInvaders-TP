@@ -6,6 +6,9 @@ public class BalaView {
     private final boolean activa;
     private final String imagen;
 
+
+
+
     public BalaView(int[][] pos, boolean a, String img) {
         imagen = img;
         activa = a;
@@ -16,7 +19,11 @@ public class BalaView {
         posicion[1][1] = pos[1][1];
     }
 
+
     public int[] viewPosicion() { return new int[]{posicion[0][0], posicion[1][0]}; }
     public boolean viewEstado() { return activa; }
     public String getImagen() { return imagen; }
+
+
+
 }

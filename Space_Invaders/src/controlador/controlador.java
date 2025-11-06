@@ -19,6 +19,8 @@ public class controlador {
     public static controlador obtenerInstancia() {
         if (instancia == null) instancia = new controlador();
         return instancia;
+
+
     }
 
     private Partida partida;
@@ -32,9 +34,12 @@ public class controlador {
 
     public void manejarTeclas(KeyEvent e) {
         int tecla = e.getKeyCode();
-        if (tecla == KeyEvent.VK_LEFT)  partida.moverJugador(-5.0);
-        else if (tecla == KeyEvent.VK_RIGHT) partida.moverJugador(5.0);
+        if (tecla == KeyEvent.VK_LEFT)      partida.moverJugador(-5.0);
+        else if (tecla == KeyEvent.VK_RIGHT)     partida.moverJugador(5.0);
         else if (tecla == KeyEvent.VK_SPACE) partida.dispararJugador();
+
+
+
     }
 
     public void iniciarBucle(int intervaloMs) {
@@ -52,7 +57,14 @@ public class controlador {
             }
         });
         temporizador.start();
+
+
+
     }
+
+
+
+
 
     public void gameOver() {
         if (ranking != null) {
@@ -63,14 +75,18 @@ public class controlador {
                 String top = String.join("\n", rv.getTopPuntajes());
                 javax.swing.JOptionPane.showMessageDialog(null, "Ranking Top 5:\n" + top, "Ranking", javax.swing.JOptionPane.INFORMATION_MESSAGE);
             }
+
+
         }
     }
 
     public JugadorView obtenerJugadorView() { return partida.generarJugadorView(); }
     public List<InvasorView> obtenerInvasoresView() { return partida.generarInvasoresView(); }
     public List<BalaView> obtenerBalasView() { return partida.generarBalasView(); }
-    public List<MuroView> obtenerMurosView() { return partida.generarMurosView(); }
+    public List<MuroView> obtenerMurosView()  { return partida.generarMurosView(); }
     public PartidaView obtenerPartidaView() { return partida.generarPartidaView(); }
+
+
 
     public Partida getPartida() { return partida; }
     public game.Jugador getJugador() { return partida.getJugador(); }
@@ -83,4 +99,7 @@ public class controlador {
 
     public void setRanking(Ranking r) { this.ranking = r; }
     public RankingView obtenerRankingView(int n) { return new RankingView(ranking.topN(n)); }
+
+
+
 }

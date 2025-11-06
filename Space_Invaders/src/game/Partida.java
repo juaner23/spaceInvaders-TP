@@ -24,19 +24,23 @@ public class Partida {
     private List<Bala> balas = new ArrayList<>();
     private List<Invasor> invasores = new ArrayList<>();
     private List<Muro> muros = new ArrayList<>();
-    private int puntaje = 0;
+
+      private int puntaje = 0;
     private int nivel = 1;
     private int sentido = 1;
     private long ultimoDisparoJugador = 0;
 
     public Partida() {
-        // Solo inicializar estructuras
+        // Solo inicializa estructuras
     }
 
     public void iniciarNivel() {
         generarInvasores();
         generarMuros();
     }
+
+
+
 
     public void actualizar() {
         moverBalas();
@@ -81,6 +85,8 @@ public class Partida {
                     puntaje += PUNTOS_POR_INVASOR;
                     break;
                 }
+
+
             }
         }
         balas.removeIf(b -> !b.estaActiva());
@@ -110,6 +116,7 @@ public class Partida {
                     b.desactivar();
                     break;
                 }
+
             }
         }
         balas.removeIf(b -> !b.estaActiva());
@@ -130,6 +137,7 @@ public class Partida {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 5; j++) {
                 muros.add(new Muro(100 + i * 150 + j * 20, 450));
+
             }
         }
     }
@@ -143,8 +151,10 @@ public class Partida {
                     balas.add(new Bala(x, y, 1));
                     break;
                 }
-            }
+               }
         }
+
+
     }
 
     public boolean esGanador() {

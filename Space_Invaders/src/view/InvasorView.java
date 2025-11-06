@@ -18,5 +18,6 @@ public class InvasorView {
 
     public int[] viewPosicion() { return new int[]{posicion[0][0], posicion[1][0]}; }
     public boolean viewEstado() { return vivo; }
+
     public String getImagen() { return imagen; }
 }

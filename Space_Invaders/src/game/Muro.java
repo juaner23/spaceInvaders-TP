@@ -7,6 +7,8 @@ public class Muro {
     private int ancho = 20, alto = 20;
     private int hp = 4; // 4 hits para destruir
 
+
+
     public Muro(double x, double y) {
         this.x = x;
         this.y = y;
@@ -16,9 +18,14 @@ public class Muro {
         return hp > 0;
     }
 
+
+
     public void reducirHp() {
-        if (hp > 0) hp--;
+            if (hp > 0) hp--;
     }
+
+
+
 
     public double getX() { return x; }
     public double getY() { return y; }

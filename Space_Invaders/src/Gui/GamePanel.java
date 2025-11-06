@@ -15,9 +15,9 @@ import javax.swing.ImageIcon;
 public class GamePanel extends JPanel {
     private final controlador ctrl;
 
-    private final Image imgBateria   = new ImageIcon(getClass().getResource("imagenes/Bateria.png")).getImage();
+    private final Image imgBateria   =   new ImageIcon(getClass().getResource("imagenes/Bateria.png")).getImage();
     private final Image imgNave      = new ImageIcon(getClass().getResource("imagenes/Nave.png")).getImage();
-    private final Image imgProyectil = new ImageIcon(getClass().getResource("imagenes/Proyectil.png")).getImage();
+    private final Image imgProyectil =  new ImageIcon(getClass().getResource("imagenes/Proyectil.png")).getImage();
     private final Image imgMuro      = new ImageIcon(getClass().getResource("imagenes/Muro_energia.png")).getImage();
 
     public GamePanel() {

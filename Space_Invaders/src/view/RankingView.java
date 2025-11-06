@@ -1,6 +1,6 @@
 package view;
 
-//empieza mi codigo -fati 
+
 import java.util.List;
 
 public class RankingView {
@@ -14,4 +14,3 @@ public class RankingView {
         return topPuntajes;
     }
 }
-//termino mi codigo -fati

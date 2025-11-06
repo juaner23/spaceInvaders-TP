@@ -15,10 +15,10 @@ public class Main {
             ventana.setResizable(false);
 
             GamePanel panel = new GamePanel();
-            //empieza mi codigo -fati 
+
             controlador ctrl = controlador.obtenerInstancia();
             ctrl.setRanking(new Ranking());
-            //termino mi codigo -fati
+
             ventana.add(panel);
             ventana.pack();
             ventana.setLocationRelativeTo(null);
