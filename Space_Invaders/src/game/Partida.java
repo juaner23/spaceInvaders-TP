@@ -1,4 +1,3 @@
-
 package game;
 
 import view.JugadorView;
@@ -29,17 +28,10 @@ public class Partida {
     private long ultimoDisparoJugador = 0;
 
     public Partida() {
-        generarInvasores();
+        // Solo inicializar estructuras
     }
 
-    public void reiniciar() {
-        jugador = new Jugador();
-        balas.clear();
-        invasores.clear();
-        puntaje = 0;
-        nivel = 1;
-        sentido = 1;
-        ultimoDisparoJugador = 0;
+    public void iniciarNivel() {
         generarInvasores();
     }
 
@@ -47,6 +39,8 @@ public class Partida {
         moverBalas();
         moverInvasores();
         colisionesBalaInvasor();
+        colisionesBalaJugador(); // Saca vidas al jugador si le pegan balas invasoras
+        dispararInvasores();
     }
 
     private void moverBalas() {
@@ -88,6 +82,20 @@ public class Partida {
         balas.removeIf(b -> !b.estaActiva());
     }
 
+    private void colisionesBalaJugador() {
+        for (Bala b : new ArrayList<>(balas)) {
+            if (!b.estaActiva() || b.getLanzador() != 1) continue; // Solo balas invasoras
+            Rectangle rB = new Rectangle((int)b.getX(), (int)b.getY(), b.getAncho(), b.getAlto());
+            Rectangle rJ = new Rectangle((int)jugador.obtenerPosicionX(), (int)jugador.obtenerPosicionY(), jugador.obtenerAncho(), jugador.obtenerAltura());
+            if (rB.intersects(rJ)) {
+                jugador.perderVida(); // Saca una vida
+                b.desactivar();
+                break;
+            }
+        }
+        balas.removeIf(b -> !b.estaActiva());
+    }
+
     private void generarInvasores() {
         invasores.clear();
         for (int i = 0; i < FILAS_INVASORES; i++) {
@@ -95,6 +103,34 @@ public class Partida {
                 invasores.add(new Invasor(280 + j * ESPACIO_X_INVASORES, 40 + i * ESPACIO_Y_INVASORES));
             }
         }
+    }
+
+    private void dispararInvasores() {
+        if (Math.random() < 0.05) { // Más balas invasoras
+            for (Invasor inv : invasores) {
+                if (inv.estaVivo()) {
+                    double x = inv.getX() + inv.getAncho() / 2.0 - 2;
+                    double y = inv.getY() + inv.getAlto();
+                    balas.add(new Bala(x, y, 1));
+                    break;
+                }
+            }
+        }
+    }
+
+    public boolean esGanador() {
+        for (Invasor inv : invasores) {
+            if (inv.estaVivo()) return false;
+        }
+        return true;
+    }
+
+    public boolean esPerdedor() {
+        // Chequea invasores abajo O vidas <= 0
+        for (Invasor inv : invasores) {
+            if (inv.estaVivo() && inv.getY() + inv.getAlto() >= 500) return true;
+        }
+        return jugador.obtenerVidas() <= 0; // Pierde si no tiene vidas
     }
 
     public void dispararJugador() {
@@ -110,14 +146,12 @@ public class Partida {
         jugador.mover(deltaX);
     }
 
-    // Getters para controlador
     public Jugador obtenerJugador() { return jugador; }
     public List<Bala> obtenerBalas() { return balas; }
     public List<Invasor> obtenerInvasores() { return invasores; }
     public int obtenerPuntaje() { return puntaje; }
     public int obtenerNivel() { return nivel; }
 
-    // Generar vistas
     public JugadorView generarJugadorView() {
         int[][] pos = {{(int)jugador.obtenerPosicionX(), (int)jugador.obtenerPosicionX() + jugador.obtenerAncho()},
                 {(int)jugador.obtenerPosicionY(), (int)jugador.obtenerPosicionY() + jugador.obtenerAltura()}};

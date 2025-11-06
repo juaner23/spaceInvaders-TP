@@ -12,7 +12,13 @@ public class Bala {
         this.x = x; this.y = y; this.lanzador = lanzador;
     }
 
-    public void mover() { if (lanzador == 0) y -= velocidad; else y += velocidad; }
+    public void mover() {
+        if (lanzador == 0) y -= velocidad;
+        else {
+            y += velocidad;
+            System.out.println("Bala invasor: x=" + x + ", y=" + y); // Debug: x debería ser constante (recto)
+        }
+    }
     public void desactivar() { activa = false; }
 
     public boolean estaActiva() { return activa; }
@@ -31,4 +37,8 @@ public class Bala {
         Rectangle rI = new Rectangle((int)inv.getX(), (int)inv.getY(), inv.getAncho(), inv.getAlto());
         return rB.intersects(rI);
     }
+
+
+
+
 }

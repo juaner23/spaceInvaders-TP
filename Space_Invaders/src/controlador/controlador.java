@@ -1,15 +1,12 @@
-
 package controlador;
 
 import game.Partida;
-//empieza mi codigo -fati
 import game.Ranking;
-import view.RankingView;
-//termino mi codigo -fati
 import view.JugadorView;
 import view.InvasorView;
 import view.BalaView;
 import view.PartidaView;
+import view.RankingView;
 
 import javax.swing.Timer;
 import java.awt.event.KeyEvent;
@@ -25,13 +22,15 @@ public class controlador {
         return instancia;
     }
 
-    private Partida partida = new Partida();
+    private Partida partida;
     private Timer temporizador;
-    //empieza mi codigo -fati
     private Ranking ranking;
-    //termino mi codigo -fati
 
-    private controlador() {}
+    private controlador() {
+        // Arranca explícitamente: crea Partida y inicia nivel
+        this.partida = new Partida();
+        this.partida.iniciarNivel();
+    }
 
     public void manejarTeclas(KeyEvent e) {
         int tecla = e.getKeyCode();
@@ -42,11 +41,24 @@ public class controlador {
 
     public void iniciarBucle(int intervaloMs) {
         if (temporizador != null) temporizador.stop();
-        temporizador = new Timer(intervaloMs, e -> partida.actualizar());
+        temporizador = new Timer(intervaloMs, e -> {
+            partida.actualizar();
+            if (partida.esGanador()) {
+                temporizador.stop();
+                gameOver();
+                System.out.println("Ganaste!");
+                // No cerrar
+            } else if (partida.esPerdedor()) {
+                temporizador.stop();
+                gameOver(); // Nuevo: llamar gameOver al perder
+                System.out.println("Perdiste!");
+                // No cerrar
+            }
+        });
         temporizador.start();
     }
 
-    // Delegar getters a Partida
+    // Delegar vistas (bajo acoplamiento)
     public JugadorView obtenerJugadorView() { return partida.generarJugadorView(); }
     public List<InvasorView> obtenerInvasoresView() { return partida.generarInvasoresView(); }
     public List<BalaView> obtenerBalasView() { return partida.generarBalasView(); }
@@ -61,20 +73,26 @@ public class controlador {
     public int obtenerVidas() { return partida.obtenerJugador().obtenerVidas(); }
     public int obtenerNivel() { return partida.obtenerNivel(); }
 
-    //empieza mi codigo -fati 
+    // Ranking (de tu compañera)
     public void setRanking(Ranking r) {
         this.ranking = r;
     }
 
     public void gameOver() {
         if (ranking != null) {
-            ranking.guardarPuntajeBest("Manuela", partida.obtenerPuntaje());
+            // Pedir nombre
+            String nombre = javax.swing.JOptionPane.showInputDialog(null, "Ingresa tu nombre:", "Game Over", javax.swing.JOptionPane.QUESTION_MESSAGE);
+            if (nombre != null && !nombre.trim().isEmpty()) {
+                ranking.guardarPuntajeBest(nombre, partida.obtenerPuntaje());
+                // Mostrar ranking
+                RankingView rv = obtenerRankingView(5);
+                String top = String.join("\n", rv.getTopPuntajes());
+                javax.swing.JOptionPane.showMessageDialog(null, "Ranking Top 5:\n" + top, "Ranking", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            }
         }
     }
 
     public RankingView obtenerRankingView(int n) {
         return new RankingView(ranking.topN(n));
     }
-
-    //termino mi codigo -fati
 }

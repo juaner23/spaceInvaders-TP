@@ -62,12 +62,13 @@ public class GamePanel extends JPanel {
 
         for (var bv : ctrl.obtenerBalasView()) {
             if (!bv.viewEstado()) continue;
+            int x = bv.viewPosicion()[0];
+            int y = bv.viewPosicion()[1];
+            System.out.println("Dibujando bala: x=" + x + ", y=" + y); // Debug
             if (imgProyectil != null)
-                g.drawImage(imgProyectil, bv.viewPosicion()[0], bv.viewPosicion()[1], 4, 12, null);
-            else {
-                g.setColor(Color.YELLOW);
-                g.fillRect(bv.viewPosicion()[0], bv.viewPosicion()[1], 4, 12);
-            }
+                g.drawImage(imgProyectil, x, y, 4, 12, null);
+            else
+                g.fillRect(x, y, 4, 12);
         }
 
         var pv = ctrl.obtenerPartidaView();
