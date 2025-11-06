@@ -1,4 +1,3 @@
-
 package Gui;
 
 import controlador.controlador;
@@ -16,9 +15,10 @@ import javax.swing.ImageIcon;
 public class GamePanel extends JPanel {
     private final controlador ctrl;
 
-    private final Image imgBateria   = new ImageIcon(getClass().getResource("Bateria.png")).getImage();
-    private final Image imgNave      = new ImageIcon(getClass().getResource("Nave.png")).getImage();
-    private final Image imgProyectil = new ImageIcon(getClass().getResource("Proyectil.png")).getImage();
+    private final Image imgBateria   = new ImageIcon(getClass().getResource("imagenes/Bateria.png")).getImage();
+    private final Image imgNave      = new ImageIcon(getClass().getResource("imagenes/Nave.png")).getImage();
+    private final Image imgProyectil = new ImageIcon(getClass().getResource("imagenes/Proyectil.png")).getImage();
+    private final Image imgMuro      = new ImageIcon(getClass().getResource("imagenes/Muro_energia.png")).getImage();
 
     public GamePanel() {
         this.ctrl = controlador.obtenerInstancia();
@@ -62,13 +62,22 @@ public class GamePanel extends JPanel {
 
         for (var bv : ctrl.obtenerBalasView()) {
             if (!bv.viewEstado()) continue;
-            int x = bv.viewPosicion()[0];
-            int y = bv.viewPosicion()[1];
-            System.out.println("Dibujando bala: x=" + x + ", y=" + y); // Debug
             if (imgProyectil != null)
-                g.drawImage(imgProyectil, x, y, 4, 12, null);
-            else
-                g.fillRect(x, y, 4, 12);
+                g.drawImage(imgProyectil, bv.viewPosicion()[0], bv.viewPosicion()[1], 4, 12, null);
+            else {
+                g.setColor(Color.YELLOW);
+                g.fillRect(bv.viewPosicion()[0], bv.viewPosicion()[1], 4, 12);
+            }
+        }
+
+        for (var mv : ctrl.obtenerMurosView()) {
+            if (!mv.viewEstado()) continue;
+            if (imgMuro != null)
+                g.drawImage(imgMuro, mv.viewPosicion()[0], mv.viewPosicion()[1], 20, 20, null);
+            else {
+                g.setColor(Color.GREEN);
+                g.fillRect(mv.viewPosicion()[0], mv.viewPosicion()[1], 20, 20);
+            }
         }
 
         var pv = ctrl.obtenerPartidaView();

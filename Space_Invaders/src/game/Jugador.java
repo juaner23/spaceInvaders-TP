@@ -1,4 +1,3 @@
-
 package game;
 
 public class Jugador {
@@ -17,21 +16,20 @@ public class Jugador {
         this.vidas = 3;
     }
 
-    public double obtenerPosicionX() { return posicionX; }
-    public double obtenerPosicionY() { return posicionY; }
-    public int obtenerVidas() { return vidas; }
-    public int obtenerAncho() { return ANCHO_JUGADOR; }
-    public int obtenerAltura() { return ALTURA_JUGADOR; }
+    public double getPosicionX() { return posicionX; }
+    public double getPosicionY() { return posicionY; }
+    public int getVidas() { return vidas; }
+    public int getAncho() { return ANCHO_JUGADOR; }
+    public int getAltura() { return ALTURA_JUGADOR; }
 
-
-    public void establecerPosicionX(double posicionX) {
+    public void setPosicionX(double posicionX) {
         this.posicionX = posicionX;
         if (this.posicionX < 0) this.posicionX = 0;
         if (this.posicionX > ANCHO_PANTALLA - ANCHO_JUGADOR) this.posicionX = ANCHO_PANTALLA - ANCHO_JUGADOR;
     }
 
     public void mover(double deltaX) {
-        establecerPosicionX(this.posicionX + deltaX);
+        setPosicionX(this.posicionX + deltaX);
     }
 
     public void perderVida() {

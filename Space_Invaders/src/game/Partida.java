@@ -4,6 +4,7 @@ import view.JugadorView;
 import view.InvasorView;
 import view.BalaView;
 import view.PartidaView;
+import view.MuroView;
 
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public class Partida {
     private Jugador jugador = new Jugador();
     private List<Bala> balas = new ArrayList<>();
     private List<Invasor> invasores = new ArrayList<>();
+    private List<Muro> muros = new ArrayList<>();
     private int puntaje = 0;
     private int nivel = 1;
     private int sentido = 1;
@@ -33,13 +35,15 @@ public class Partida {
 
     public void iniciarNivel() {
         generarInvasores();
+        generarMuros();
     }
 
     public void actualizar() {
         moverBalas();
         moverInvasores();
         colisionesBalaInvasor();
-        colisionesBalaJugador(); // Saca vidas al jugador si le pegan balas invasoras
+        colisionesBalaJugador();
+        colisionesBalaMuro();
         dispararInvasores();
     }
 
@@ -84,16 +88,32 @@ public class Partida {
 
     private void colisionesBalaJugador() {
         for (Bala b : new ArrayList<>(balas)) {
-            if (!b.estaActiva() || b.getLanzador() != 1) continue; // Solo balas invasoras
+            if (!b.estaActiva() || b.getLanzador() != 1) continue;
             Rectangle rB = new Rectangle((int)b.getX(), (int)b.getY(), b.getAncho(), b.getAlto());
-            Rectangle rJ = new Rectangle((int)jugador.obtenerPosicionX(), (int)jugador.obtenerPosicionY(), jugador.obtenerAncho(), jugador.obtenerAltura());
+            Rectangle rJ = new Rectangle((int)jugador.getPosicionX(), (int)jugador.getPosicionY(), jugador.getAncho(), jugador.getAltura());
             if (rB.intersects(rJ)) {
-                jugador.perderVida(); // Saca una vida
+                jugador.perderVida();
                 b.desactivar();
                 break;
             }
         }
         balas.removeIf(b -> !b.estaActiva());
+    }
+
+    private void colisionesBalaMuro() {
+        for (Bala b : new ArrayList<>(balas)) {
+            if (!b.estaActiva()) continue;
+            for (Muro muro : muros) {
+                if (!muro.estaVivo()) continue;
+                if (muro.colisionaCon(b)) {
+                    muro.reducirHp();
+                    b.desactivar();
+                    break;
+                }
+            }
+        }
+        balas.removeIf(b -> !b.estaActiva());
+        muros.removeIf(m -> !m.estaVivo());
     }
 
     private void generarInvasores() {
@@ -105,8 +125,17 @@ public class Partida {
         }
     }
 
+    private void generarMuros() {
+        muros.clear();
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 5; j++) {
+                muros.add(new Muro(100 + i * 150 + j * 20, 450));
+            }
+        }
+    }
+
     private void dispararInvasores() {
-        if (Math.random() < 0.05) { // Más balas invasoras
+        if (Math.random() < 0.05) {
             for (Invasor inv : invasores) {
                 if (inv.estaVivo()) {
                     double x = inv.getX() + inv.getAncho() / 2.0 - 2;
@@ -126,19 +155,18 @@ public class Partida {
     }
 
     public boolean esPerdedor() {
-        // Chequea invasores abajo O vidas <= 0
         for (Invasor inv : invasores) {
             if (inv.estaVivo() && inv.getY() + inv.getAlto() >= 500) return true;
         }
-        return jugador.obtenerVidas() <= 0; // Pierde si no tiene vidas
+        return jugador.getVidas() <= 0;
     }
 
     public void dispararJugador() {
         long ahora = System.currentTimeMillis();
         if (ahora - ultimoDisparoJugador < COOLDOWN_JUGADOR_MS) return;
         ultimoDisparoJugador = ahora;
-        double x = jugador.obtenerPosicionX() + jugador.obtenerAncho()/2.0 - 2;
-        double y = jugador.obtenerPosicionY() - 12;
+        double x = jugador.getPosicionX() + jugador.getAncho()/2.0 - 2;
+        double y = jugador.getPosicionY() - 12;
         balas.add(new Bala(x, y, 0));
     }
 
@@ -146,16 +174,17 @@ public class Partida {
         jugador.mover(deltaX);
     }
 
-    public Jugador obtenerJugador() { return jugador; }
-    public List<Bala> obtenerBalas() { return balas; }
-    public List<Invasor> obtenerInvasores() { return invasores; }
-    public int obtenerPuntaje() { return puntaje; }
-    public int obtenerNivel() { return nivel; }
+    public Jugador getJugador() { return jugador; }
+    public List<Bala> getBalas() { return balas; }
+    public List<Invasor> getInvasores() { return invasores; }
+    public List<Muro> getMuros() { return muros; }
+    public int getPuntaje() { return puntaje; }
+    public int getNivel() { return nivel; }
 
     public JugadorView generarJugadorView() {
-        int[][] pos = {{(int)jugador.obtenerPosicionX(), (int)jugador.obtenerPosicionX() + jugador.obtenerAncho()},
-                {(int)jugador.obtenerPosicionY(), (int)jugador.obtenerPosicionY() + jugador.obtenerAltura()}};
-        return new JugadorView(jugador.obtenerVidas(), pos, "Bateria.png");
+        int[][] pos = {{(int)jugador.getPosicionX(), (int)jugador.getPosicionX() + jugador.getAncho()},
+                {(int)jugador.getPosicionY(), (int)jugador.getPosicionY() + jugador.getAltura()}};
+        return new JugadorView(jugador.getVidas(), pos, "Bateria.png");
     }
 
     public List<InvasorView> generarInvasoresView() {
@@ -178,7 +207,17 @@ public class Partida {
         return vistas;
     }
 
+    public List<MuroView> generarMurosView() {
+        List<MuroView> vistas = new ArrayList<>();
+        for (Muro muro : muros) {
+            int[][] pos = {{(int)muro.getX(), (int)muro.getX() + muro.getAncho()},
+                    {(int)muro.getY(), (int)muro.getY() + muro.getAlto()}};
+            vistas.add(new MuroView(pos, muro.estaVivo(), "Muro_energia.png"));
+        }
+        return vistas;
+    }
+
     public PartidaView generarPartidaView() {
-        return new PartidaView(puntaje, nivel, jugador.obtenerVidas());
+        return new PartidaView(puntaje, nivel, jugador.getVidas());
     }
 }
