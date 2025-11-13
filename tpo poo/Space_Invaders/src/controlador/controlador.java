@@ -46,24 +46,26 @@ public class controlador {
         if (temporizador != null) temporizador.stop();
         temporizador = new Timer(intervaloMs, e -> {
             partida.actualizar();
-            if (partida.esGanador()) {
+
+
+            if (partida.isJuegoTerminado()) {
                 temporizador.stop();
                 gameOver();
-                System.out.println("Ganaste!");
-            } else if (partida.esPerdedor()) {
-                temporizador.stop();
-                gameOver();
-                System.out.println("Perdiste!");
+
+                if (partida.esGanador()) {
+                    System.out.println("Ganaste!");
+                } else {
+                    System.out.println("Perdiste!");
+                }
             }
         });
         temporizador.start();
-
-
-
     }
 
 
-
+    public boolean isJuegoTerminado() {
+        return partida.isJuegoTerminado();
+    }
 
 
     public void gameOver() {
@@ -85,7 +87,6 @@ public class controlador {
     public List<BalaView> obtenerBalasView() { return partida.generarBalasView(); }
     public List<MuroView> obtenerMurosView()  { return partida.generarMurosView(); }
     public PartidaView obtenerPartidaView() { return partida.generarPartidaView(); }
-
 
 
     public Partida getPartida() { return partida; }

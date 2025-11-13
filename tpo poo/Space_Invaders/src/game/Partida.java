@@ -25,10 +25,11 @@ public class Partida {
     private List<Invasor> invasores = new ArrayList<>();
     private List<Muro> muros = new ArrayList<>();
 
-      private int puntaje = 0;
+    private int puntaje = 0;
     private int nivel = 1;
     private int sentido = 1;
     private long ultimoDisparoJugador = 0;
+    private boolean juegoTerminado = false;
 
     public Partida() {
         // Solo inicializa estructuras
@@ -40,8 +41,6 @@ public class Partida {
     }
 
 
-
-
     public void actualizar() {
         moverBalas();
         moverInvasores();
@@ -49,6 +48,10 @@ public class Partida {
         colisionesBalaJugador();
         colisionesBalaMuro();
         dispararInvasores();
+
+        if (esPerdedor() || esGanador()) {
+            juegoTerminado = true;
+        }
     }
 
     private void moverBalas() {
@@ -95,8 +98,8 @@ public class Partida {
     private void colisionesBalaJugador() {
         for (Bala b : new ArrayList<>(balas)) {
             if (!b.estaActiva() || b.getLanzador() != 1) continue;
-            Rectangle rB = new Rectangle((int)b.getX(), (int)b.getY(), b.getAncho(), b.getAlto());
-            Rectangle rJ = new Rectangle((int)jugador.getPosicionX(), (int)jugador.getPosicionY(), jugador.getAncho(), jugador.getAltura());
+            Rectangle rB = new Rectangle((int) b.getX(), (int) b.getY(), b.getAncho(), b.getAlto());
+            Rectangle rJ = new Rectangle((int) jugador.getPosicionX(), (int) jugador.getPosicionY(), jugador.getAncho(), jugador.getAltura());
             if (rB.intersects(rJ)) {
                 jugador.perderVida();
                 b.desactivar();
@@ -151,7 +154,7 @@ public class Partida {
                     balas.add(new Bala(x, y, 1));
                     break;
                 }
-               }
+            }
         }
 
 
@@ -170,12 +173,15 @@ public class Partida {
         }
         return jugador.getVidas() <= 0;
     }
+    public PartidaView generarPartidaView() {
+        return new PartidaView(puntaje, nivel, jugador.getVidas());
+    }
 
     public void dispararJugador() {
         long ahora = System.currentTimeMillis();
         if (ahora - ultimoDisparoJugador < COOLDOWN_JUGADOR_MS) return;
         ultimoDisparoJugador = ahora;
-        double x = jugador.getPosicionX() + jugador.getAncho()/2.0 - 2;
+        double x = jugador.getPosicionX() + jugador.getAncho() / 2.0 - 2;
         double y = jugador.getPosicionY() - 12;
         balas.add(new Bala(x, y, 0));
     }
@@ -184,24 +190,41 @@ public class Partida {
         jugador.mover(deltaX);
     }
 
-    public Jugador getJugador() { return jugador; }
-    public List<Bala> getBalas() { return balas; }
-    public List<Invasor> getInvasores() { return invasores; }
-    public List<Muro> getMuros() { return muros; }
-    public int getPuntaje() { return puntaje; }
-    public int getNivel() { return nivel; }
+    public Jugador getJugador() {
+        return jugador;
+    }
+
+    public List<Bala> getBalas() {
+        return balas;
+    }
+
+    public List<Invasor> getInvasores() {
+        return invasores;
+    }
+
+    public List<Muro> getMuros() {
+        return muros;
+    }
+
+    public int getPuntaje() {
+        return puntaje;
+    }
+
+    public int getNivel() {
+        return nivel;
+    }
 
     public JugadorView generarJugadorView() {
-        int[][] pos = {{(int)jugador.getPosicionX(), (int)jugador.getPosicionX() + jugador.getAncho()},
-                {(int)jugador.getPosicionY(), (int)jugador.getPosicionY() + jugador.getAltura()}};
+        int[][] pos = {{(int) jugador.getPosicionX(), (int) jugador.getPosicionX() + jugador.getAncho()},
+                {(int) jugador.getPosicionY(), (int) jugador.getPosicionY() + jugador.getAltura()}};
         return new JugadorView(jugador.getVidas(), pos, "Bateria.png");
     }
 
     public List<InvasorView> generarInvasoresView() {
         List<InvasorView> vistas = new ArrayList<>();
         for (Invasor inv : invasores) {
-            int[][] pos = {{(int)inv.getX(), (int)inv.getX() + inv.getAncho()},
-                    {(int)inv.getY(), (int)inv.getY() + inv.getAlto()}};
+            int[][] pos = {{(int) inv.getX(), (int) inv.getX() + inv.getAncho()},
+                    {(int) inv.getY(), (int) inv.getY() + inv.getAlto()}};
             vistas.add(new InvasorView(pos, inv.estaVivo(), "Nave.png"));
         }
         return vistas;
@@ -210,8 +233,8 @@ public class Partida {
     public List<BalaView> generarBalasView() {
         List<BalaView> vistas = new ArrayList<>();
         for (Bala b : balas) {
-            int[][] pos = {{(int)b.getX(), (int)b.getX() + b.getAncho()},
-                    {(int)b.getY(), (int)b.getY() + b.getAlto()}};
+            int[][] pos = {{(int) b.getX(), (int) b.getX() + b.getAncho()},
+                    {(int) b.getY(), (int) b.getY() + b.getAlto()}};
             vistas.add(new BalaView(pos, b.estaActiva(), "Proyectil.png"));
         }
         return vistas;
@@ -220,14 +243,17 @@ public class Partida {
     public List<MuroView> generarMurosView() {
         List<MuroView> vistas = new ArrayList<>();
         for (Muro muro : muros) {
-            int[][] pos = {{(int)muro.getX(), (int)muro.getX() + muro.getAncho()},
-                    {(int)muro.getY(), (int)muro.getY() + muro.getAlto()}};
+            int[][] pos = {{(int) muro.getX(), (int) muro.getX() + muro.getAncho()},
+                    {(int) muro.getY(), (int) muro.getY() + muro.getAlto()}};
             vistas.add(new MuroView(pos, muro.estaVivo(), "Muro_energia.png"));
         }
         return vistas;
     }
 
-    public PartidaView generarPartidaView() {
-        return new PartidaView(puntaje, nivel, jugador.getVidas());
+
+    public boolean isJuegoTerminado() {
+        return juegoTerminado;
     }
+
 }
+

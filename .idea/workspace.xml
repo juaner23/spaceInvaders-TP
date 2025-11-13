@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6b966c3a-bbdd-431d-a9e8-5533995209a3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/Gui/GamePanel$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/Gui/GamePanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/Gui/imagenes/Muro_energia.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/Gui/imagenes/Proyectil.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/Gui/imagenes/bateria.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/Gui/imagenes/nave.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/controlador/controlador.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/game/Bala.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/game/Invasor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/game/Jugador.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/game/Muro.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/game/Partida.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/game/Ranking.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/view/BalaView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/view/InvasorView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/view/JugadorView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/view/MuroView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/view/PartidaView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/view/RankingView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tpo poo/Space_Invaders/src/Gui/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/tpo poo/Space_Invaders/src/Gui/GamePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tpo poo/Space_Invaders/src/controlador/controlador.java" beforeDir="false" afterPath="$PROJECT_DIR$/tpo poo/Space_Invaders/src/controlador/controlador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tpo poo/Space_Invaders/src/game/Partida.java" beforeDir="false" afterPath="$PROJECT_DIR$/tpo poo/Space_Invaders/src/game/Partida.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;juaner23&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/juaner23/spaceInvaders-TP.git&quot;,
+    &quot;accountId&quot;: &quot;6d259a4e-226f-49c0-872d-cde5b5519bf2&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="357vHvfwb9Lw7TAlowp5dQlMAdn" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6b966c3a-bbdd-431d-a9e8-5533995209a3" name="Changes" comment="" />
+      <created>1762473842578</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1762473842578</updated>
+    </task>
+    <servers />
+  </component>
+</project>

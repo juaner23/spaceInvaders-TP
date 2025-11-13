@@ -15,10 +15,12 @@ import javax.swing.ImageIcon;
 public class GamePanel extends JPanel {
     private final controlador ctrl;
 
-    private final Image imgBateria   =   new ImageIcon(getClass().getResource("imagenes/Bateria.png")).getImage();
-    private final Image imgNave      = new ImageIcon(getClass().getResource("imagenes/Nave.png")).getImage();
-    private final Image imgProyectil =  new ImageIcon(getClass().getResource("imagenes/Proyectil.png")).getImage();
-    private final Image imgMuro      = new ImageIcon(getClass().getResource("imagenes/Muro_energia.png")).getImage();
+    private final Image imgBateria = new ImageIcon(getClass().getResource("imagenes/Bateria.png")).getImage();
+    private final Image imgNave = new ImageIcon(getClass().getResource("imagenes/Nave.png")).getImage();
+    private final Image imgProyectil = new ImageIcon(getClass().getResource("imagenes/Proyectil.png")).getImage();
+    private final Image imgMuro = new ImageIcon(getClass().getResource("imagenes/Muro_energia.png")).getImage();
+    private final Image imgGameOver = new ImageIcon(getClass().getResource("imagenes/GameOver.png")).getImage(); // AGREGAR
+
 
     public GamePanel() {
         this.ctrl = controlador.obtenerInstancia();
@@ -78,12 +80,22 @@ public class GamePanel extends JPanel {
                 g.setColor(Color.GREEN);
                 g.fillRect(mv.viewPosicion()[0], mv.viewPosicion()[1], 20, 20);
             }
-        }
+            if (ctrl.isJuegoTerminado()) {
+                if (imgGameOver != null) {
+                    // Dibuja la imagen centrada
+                    int x = (getWidth() - imgGameOver.getWidth(this)) / 2;
+                    int y = (getHeight() - imgGameOver.getHeight(this)) / 2;
+                    g.drawImage(imgGameOver, x, y, this);
+                }
 
-        var pv = ctrl.obtenerPartidaView();
-        g.setColor(Color.WHITE);
-        g.drawString("Puntos: " + pv.viewPuntaje(), 350, 20);
-        g.drawString("Nivel: " + pv.viewNivel(), 10, 20);
-        g.drawString("Vidas: " + pv.viewVidas(), 680, 20);
+
+            }
+
+            var pv = ctrl.obtenerPartidaView();
+            g.setColor(Color.WHITE);
+            g.drawString("Puntos: " + pv.viewPuntaje(), 350, 20);
+            g.drawString("Nivel: " + pv.viewNivel(), 10, 20);
+            g.drawString("Vidas: " + pv.viewVidas(), 680, 20);
+        }
     }
 }
