@@ -20,11 +20,11 @@ public class Muro {
 
 
 
-    public void reducirHp() {
-            if (hp > 0) hp--;
+
+    public void recibirImpacto(int danio){
+        hp -= danio;
+        if (hp < 0) hp = 0;
     }
-
-
 
 
     public double getX() { return x; }

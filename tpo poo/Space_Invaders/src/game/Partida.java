@@ -115,7 +115,7 @@ public class Partida {
             for (Muro muro : muros) {
                 if (!muro.estaVivo()) continue;
                 if (muro.colisionaCon(b)) {
-                    muro.reducirHp();
+                    muro.recibirImpacto(b.getDanio());
                     b.desactivar();
                     break;
                 }

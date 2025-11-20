@@ -5,28 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6b966c3a-bbdd-431d-a9e8-5533995209a3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/Gui/GamePanel$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/Gui/GamePanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/Gui/imagenes/Muro_energia.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/Gui/imagenes/Proyectil.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/Gui/imagenes/bateria.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/Gui/imagenes/nave.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/controlador/controlador.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/game/Bala.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/game/Invasor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/game/Jugador.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/game/Muro.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/game/Partida.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/game/Ranking.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/view/BalaView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/view/InvasorView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/view/JugadorView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/view/MuroView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/view/PartidaView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/view/RankingView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tpo poo/Space_Invaders/src/Gui/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/tpo poo/Space_Invaders/src/Gui/GamePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tpo poo/Space_Invaders/src/controlador/controlador.java" beforeDir="false" afterPath="$PROJECT_DIR$/tpo poo/Space_Invaders/src/controlador/controlador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/game/Bala.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/spaceInvaders-TP/game/Bala.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/game/Muro.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/spaceInvaders-TP/game/Muro.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/game/Partida.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/spaceInvaders-TP/game/Partida.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tpo poo/Space_Invaders/src/game/Bala.java" beforeDir="false" afterPath="$PROJECT_DIR$/tpo poo/Space_Invaders/src/game/Bala.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tpo poo/Space_Invaders/src/game/Muro.java" beforeDir="false" afterPath="$PROJECT_DIR$/tpo poo/Space_Invaders/src/game/Muro.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tpo poo/Space_Invaders/src/game/Partida.java" beforeDir="false" afterPath="$PROJECT_DIR$/tpo poo/Space_Invaders/src/game/Partida.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -49,6 +33,9 @@
     &quot;accountId&quot;: &quot;6d259a4e-226f-49c0-872d-cde5b5519bf2&quot;
   }
 }</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/tpo poo/Space_Invaders/src/game/Partida.java" root0="SKIP_HIGHLIGHTING" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 1
@@ -58,16 +45,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true"
   }
-}</component>
+}]]></component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="6b966c3a-bbdd-431d-a9e8-5533995209a3" name="Changes" comment="" />

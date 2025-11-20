@@ -16,8 +16,9 @@ public class Bala {
         if (lanzador == 0) y -= velocidad;
         else {
             y += velocidad;
-            System.out.println("Bala invasor: x=" + x + ", y=" + y); // Debug: x debería ser constante (recto)
+            System.out.println("Bala invasor: x=" + x + ", y=" + y); // x debería ser constante (recto)
         }
+
     }
     public void desactivar() { activa = false; }
 
@@ -39,6 +40,6 @@ public class Bala {
     }
 
 
-
+    public int getDanio() { return (lanzador == 0) ? 10 : 5; }
 
 }
