@@ -22,6 +22,18 @@ public class Jugador {
     public int getAncho() { return ANCHO_JUGADOR; }
     public int getAltura() { return ALTURA_JUGADOR; }
 
+    public void setPosicionX(double posicionX, int anchoPantalla) {
+        this.posicionX = posicionX;
+
+        // Límite Izquierdo
+        if (this.posicionX < 0) this.posicionX = 0;
+
+        // Límite Derecho (Asegura que el borde derecho de la nave quede en el borde de la pantalla)
+        if (this.posicionX > anchoPantalla - ANCHO_JUGADOR) {
+            this.posicionX = anchoPantalla - ANCHO_JUGADOR;
+        }
+    }
+
     public void setPosicionX(double posicionX) {
         this.posicionX = posicionX;
         if (this.posicionX < 0) this.posicionX = 0;

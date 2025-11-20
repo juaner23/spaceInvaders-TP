@@ -150,6 +150,9 @@ public class Partida {
             for (Invasor inv : invasores) {
                 if (inv.estaVivo()) {
                     double x = inv.getX() + inv.getAncho() / 2.0 - 2;
+                    double x_bala = inv.getX() + inv.getAncho() / 2.0 - 2;
+                    if (x_bala < 0) x_bala = 0;
+                    if (x_bala > ANCHO - 4) x_bala = ANCHO - 4;
                     double y = inv.getY() + inv.getAlto();
                     balas.add(new Bala(x, y, 1));
                     break;
@@ -167,12 +170,7 @@ public class Partida {
         return true;
     }
 
-    public boolean esPerdedor() {
-        for (Invasor inv : invasores) {
-            if (inv.estaVivo() && inv.getY() + inv.getAlto() >= 500) return true;
-        }
-        return jugador.getVidas() <= 0;
-    }
+
     public PartidaView generarPartidaView() {
         return new PartidaView(puntaje, nivel, jugador.getVidas());
     }
@@ -254,6 +252,11 @@ public class Partida {
     public boolean isJuegoTerminado() {
         return juegoTerminado;
     }
-
+    public boolean esPerdedor() {
+        //for (Invasor inv : invasores) {
+        // if (inv.estaVivo() && inv.getY() + inv.getAlto() >= 500) return true;
+        //}
+        return jugador.getVidas() <= 0;
+    }
 }
 

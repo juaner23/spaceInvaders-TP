@@ -7,10 +7,8 @@
     <list default="true" id="6b966c3a-bbdd-431d-a9e8-5533995209a3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/game/Bala.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/spaceInvaders-TP/game/Bala.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/game/Muro.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/spaceInvaders-TP/game/Muro.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/game/Partida.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/spaceInvaders-TP/game/Partida.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tpo poo/Space_Invaders/src/game/Bala.java" beforeDir="false" afterPath="$PROJECT_DIR$/tpo poo/Space_Invaders/src/game/Bala.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tpo poo/Space_Invaders/src/game/Muro.java" beforeDir="false" afterPath="$PROJECT_DIR$/tpo poo/Space_Invaders/src/game/Muro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tpo poo/Space_Invaders/src/game/Jugador.java" beforeDir="false" afterPath="$PROJECT_DIR$/tpo poo/Space_Invaders/src/game/Jugador.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tpo poo/Space_Invaders/src/game/Partida.java" beforeDir="false" afterPath="$PROJECT_DIR$/tpo poo/Space_Invaders/src/game/Partida.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
