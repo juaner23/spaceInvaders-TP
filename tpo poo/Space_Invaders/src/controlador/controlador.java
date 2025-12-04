@@ -1,16 +1,11 @@
+
+
 package controlador;
 
 import game.Partida;
 import game.Ranking;
 import game.Muro;
-import view.JugadorView;
-import view.InvasorView;
-import view.BalaView;
-import view.PartidaView;
-import view.MuroView;
-import view.RankingView;
 
-import javax.swing.Timer;
 import java.awt.event.KeyEvent;
 import java.util.List;
 
@@ -19,17 +14,13 @@ public class controlador {
     public static controlador obtenerInstancia() {
         if (instancia == null) instancia = new controlador();
         return instancia;
-
-
     }
 
     private Partida partida;
-    private Timer temporizador;
     private Ranking ranking;
 
     private controlador() {
         this.partida = new Partida();
-        this.partida.iniciarNivel();
     }
 
     public void manejarTeclas(KeyEvent e) {
@@ -37,56 +28,12 @@ public class controlador {
         if (tecla == KeyEvent.VK_LEFT)      partida.moverJugador(-5.0);
         else if (tecla == KeyEvent.VK_RIGHT)     partida.moverJugador(5.0);
         else if (tecla == KeyEvent.VK_SPACE) partida.dispararJugador();
-
-
-
     }
 
-    public void iniciarBucle(int intervaloMs) {
-        if (temporizador != null) temporizador.stop();
-        temporizador = new Timer(intervaloMs, e -> {
-            partida.actualizar();
-
-
-            if (partida.isJuegoTerminado()) {
-                temporizador.stop();
-                gameOver();
-
-                if (partida.esGanador()) {
-                    System.out.println("Ganaste!");
-                } else {
-                    System.out.println("Perdiste!");
-                }
-            }
-        });
-        temporizador.start();
+    //    método que la Vista llama para iniciar el modelo
+    public void iniciarJuego() {
+        this.partida.iniciarNivel();
     }
-
-
-    public boolean isJuegoTerminado() {
-        return partida.isJuegoTerminado();
-    }
-
-
-    public void gameOver() {
-        if (ranking != null) {
-            String nombre = javax.swing.JOptionPane.showInputDialog(null, "Ingresa tu nombre:", "Game Over", javax.swing.JOptionPane.QUESTION_MESSAGE);
-            if (nombre != null && !nombre.trim().isEmpty()) {
-                ranking.guardarPuntajeBest(nombre, partida.getPuntaje());
-                RankingView rv = obtenerRankingView(5);
-                String top = String.join("\n", rv.getTopPuntajes());
-                javax.swing.JOptionPane.showMessageDialog(null, "Ranking Top 5:\n" + top, "Ranking", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-            }
-
-
-        }
-    }
-
-    public JugadorView obtenerJugadorView() { return partida.generarJugadorView(); }
-    public List<InvasorView> obtenerInvasoresView() { return partida.generarInvasoresView(); }
-    public List<BalaView> obtenerBalasView() { return partida.generarBalasView(); }
-    public List<MuroView> obtenerMurosView()  { return partida.generarMurosView(); }
-    public PartidaView obtenerPartidaView() { return partida.generarPartidaView(); }
 
 
     public Partida getPartida() { return partida; }
@@ -99,8 +46,13 @@ public class controlador {
     public int getNivel() { return partida.getNivel(); }
 
     public void setRanking(Ranking r) { this.ranking = r; }
-    public RankingView obtenerRankingView(int n) { return new RankingView(ranking.topN(n)); }
 
 
+    public List<String> getTopRanking(int n) {
+        return ranking.topN(n);
+    }
 
+    public void guardarPuntaje(String nombre, int puntaje) {
+        ranking.guardarPuntajeBest(nombre, puntaje);
+    }
 }

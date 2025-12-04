@@ -1,10 +1,6 @@
-package game;
 
-import view.JugadorView;
-import view.InvasorView;
-import view.BalaView;
-import view.PartidaView;
-import view.MuroView;
+
+package game;
 
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -12,15 +8,15 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Partida {
-    private final int ANCHO = 800, ALTO = 600;
-    private final double VELOCIDAD_INVASOR = 2.0;
+    private final int ANCHO = 800, ALTO = 600; // Constantes de entorno (SRP: Responsabilidad de Partida)
+    private final double VELOCIDAD_INVASOR = 0.75;
     private final int BAJADA_INVASORES = 20;
     private final int PUNTOS_POR_INVASOR = 10;
     private final int FILAS_INVASORES = 3, COLUMNAS_INVASORES = 5;
     private final int ESPACIO_X_INVASORES = 50, ESPACIO_Y_INVASORES = 35;
     private final long COOLDOWN_JUGADOR_MS = 200;
 
-    private Jugador jugador = new Jugador();
+    private Jugador jugador;
     private List<Bala> balas = new ArrayList<>();
     private List<Invasor> invasores = new ArrayList<>();
     private List<Muro> muros = new ArrayList<>();
@@ -29,17 +25,17 @@ public class Partida {
     private int nivel = 1;
     private int sentido = 1;
     private long ultimoDisparoJugador = 0;
-    private boolean juegoTerminado = false;
 
     public Partida() {
-        // Solo inicializa estructuras
+
+
+        this.jugador = new Jugador(ANCHO, ALTO);
     }
 
     public void iniciarNivel() {
         generarInvasores();
         generarMuros();
     }
-
 
     public void actualizar() {
         moverBalas();
@@ -48,10 +44,6 @@ public class Partida {
         colisionesBalaJugador();
         colisionesBalaMuro();
         dispararInvasores();
-
-        if (esPerdedor() || esGanador()) {
-            juegoTerminado = true;
-        }
     }
 
     private void moverBalas() {
@@ -88,8 +80,6 @@ public class Partida {
                     puntaje += PUNTOS_POR_INVASOR;
                     break;
                 }
-
-
             }
         }
         balas.removeIf(b -> !b.estaActiva());
@@ -98,8 +88,8 @@ public class Partida {
     private void colisionesBalaJugador() {
         for (Bala b : new ArrayList<>(balas)) {
             if (!b.estaActiva() || b.getLanzador() != 1) continue;
-            Rectangle rB = new Rectangle((int) b.getX(), (int) b.getY(), b.getAncho(), b.getAlto());
-            Rectangle rJ = new Rectangle((int) jugador.getPosicionX(), (int) jugador.getPosicionY(), jugador.getAncho(), jugador.getAltura());
+            Rectangle rB = new Rectangle((int)b.getX(), (int)b.getY(), b.getAncho(), b.getAlto());
+            Rectangle rJ = new Rectangle((int)jugador.getPosicionX(), (int)jugador.getPosicionY(), jugador.getAncho(), jugador.getAltura());
             if (rB.intersects(rJ)) {
                 jugador.perderVida();
                 b.desactivar();
@@ -115,11 +105,10 @@ public class Partida {
             for (Muro muro : muros) {
                 if (!muro.estaVivo()) continue;
                 if (muro.colisionaCon(b)) {
-                    muro.recibirImpacto(b.getDanio());
+                    muro.reducirHp();
                     b.desactivar();
                     break;
                 }
-
             }
         }
         balas.removeIf(b -> !b.estaActiva());
@@ -140,7 +129,6 @@ public class Partida {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 5; j++) {
                 muros.add(new Muro(100 + i * 150 + j * 20, 450));
-
             }
         }
     }
@@ -150,17 +138,12 @@ public class Partida {
             for (Invasor inv : invasores) {
                 if (inv.estaVivo()) {
                     double x = inv.getX() + inv.getAncho() / 2.0 - 2;
-                    double x_bala = inv.getX() + inv.getAncho() / 2.0 - 2;
-                    if (x_bala < 0) x_bala = 0;
-                    if (x_bala > ANCHO - 4) x_bala = ANCHO - 4;
                     double y = inv.getY() + inv.getAlto();
                     balas.add(new Bala(x, y, 1));
                     break;
                 }
             }
         }
-
-
     }
 
     public boolean esGanador() {
@@ -170,93 +153,39 @@ public class Partida {
         return true;
     }
 
-
-    public PartidaView generarPartidaView() {
-        return new PartidaView(puntaje, nivel, jugador.getVidas());
+    public boolean esPerdedor() {
+        for (Invasor inv : invasores) {
+            if (inv.estaVivo() && inv.getY() + inv.getAlto() >= 500) return true;
+        }
+        return jugador.getVidas() <= 0;
     }
 
     public void dispararJugador() {
         long ahora = System.currentTimeMillis();
         if (ahora - ultimoDisparoJugador < COOLDOWN_JUGADOR_MS) return;
         ultimoDisparoJugador = ahora;
-        double x = jugador.getPosicionX() + jugador.getAncho() / 2.0 - 2;
+        double x = jugador.getPosicionX() + jugador.getAncho()/2.0 - 2;
         double y = jugador.getPosicionY() - 12;
         balas.add(new Bala(x, y, 0));
     }
 
+    // MÉTODO CORREGIDO: Pasa el límite ANCHO, como requiere Jugador.mover(double, int)
     public void moverJugador(double deltaX) {
-        jugador.mover(deltaX);
+        jugador.mover(deltaX, ANCHO); // <--- CORRECCIÓN DE ERROR
     }
 
-    public Jugador getJugador() {
-        return jugador;
-    }
-
-    public List<Bala> getBalas() {
-        return balas;
-    }
-
-    public List<Invasor> getInvasores() {
-        return invasores;
-    }
-
-    public List<Muro> getMuros() {
-        return muros;
-    }
-
-    public int getPuntaje() {
-        return puntaje;
-    }
-
-    public int getNivel() {
-        return nivel;
-    }
-
-    public JugadorView generarJugadorView() {
-        int[][] pos = {{(int) jugador.getPosicionX(), (int) jugador.getPosicionX() + jugador.getAncho()},
-                {(int) jugador.getPosicionY(), (int) jugador.getPosicionY() + jugador.getAltura()}};
-        return new JugadorView(jugador.getVidas(), pos, "Bateria.png");
-    }
-
-    public List<InvasorView> generarInvasoresView() {
-        List<InvasorView> vistas = new ArrayList<>();
-        for (Invasor inv : invasores) {
-            int[][] pos = {{(int) inv.getX(), (int) inv.getX() + inv.getAncho()},
-                    {(int) inv.getY(), (int) inv.getY() + inv.getAlto()}};
-            vistas.add(new InvasorView(pos, inv.estaVivo(), "Nave.png"));
-        }
-        return vistas;
-    }
-
-    public List<BalaView> generarBalasView() {
-        List<BalaView> vistas = new ArrayList<>();
-        for (Bala b : balas) {
-            int[][] pos = {{(int) b.getX(), (int) b.getX() + b.getAncho()},
-                    {(int) b.getY(), (int) b.getY() + b.getAlto()}};
-            vistas.add(new BalaView(pos, b.estaActiva(), "Proyectil.png"));
-        }
-        return vistas;
-    }
-
-    public List<MuroView> generarMurosView() {
-        List<MuroView> vistas = new ArrayList<>();
-        for (Muro muro : muros) {
-            int[][] pos = {{(int) muro.getX(), (int) muro.getX() + muro.getAncho()},
-                    {(int) muro.getY(), (int) muro.getY() + muro.getAlto()}};
-            vistas.add(new MuroView(pos, muro.estaVivo(), "Muro_energia.png"));
-        }
-        return vistas;
-    }
-
-
-    public boolean isJuegoTerminado() {
-        return juegoTerminado;
-    }
-    public boolean esPerdedor() {
+    public Jugador getJugador() { return jugador; }
+    public List<Bala> getBalas() { return balas; }
+    public List<Invasor> getInvasores() { return invasores; }
+    public List<Muro> getMuros() { return muros; }
+    public int getPuntaje() { return puntaje; }
+    public int getNivel() { return nivel; }
+}
+        //QUEDA COMENTADO, NO RETORNA
         //for (Invasor inv : invasores) {
         // if (inv.estaVivo() && inv.getY() + inv.getAlto() >= 500) return true;
         //}
-        return jugador.getVidas() <= 0;
-    }
-}
+        //return jugador.getVidas() <= 0;
+   // }
+//}
 

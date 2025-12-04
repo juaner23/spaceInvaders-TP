@@ -6,15 +6,33 @@
   <component name="ChangeListManager">
     <list default="true" id="6b966c3a-bbdd-431d-a9e8-5533995209a3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/Gui/GamePanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/spaceInvaders-TP/Gui/GamePanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/Gui/GamePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/spaceInvaders-TP/Gui/GamePanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/controlador/controlador.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/spaceInvaders-TP/controlador/controlador.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/game/Bala.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/spaceInvaders-TP/game/Bala.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/game/Muro.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/spaceInvaders-TP/game/Muro.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/spaceInvaders-TP/game/Partida.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/spaceInvaders-TP/game/Partida.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ranking.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ranking.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tpo poo/Space_Invaders/src/Gui/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/tpo poo/Space_Invaders/src/Gui/GamePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tpo poo/Space_Invaders/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/tpo poo/Space_Invaders/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tpo poo/Space_Invaders/src/controlador/controlador.java" beforeDir="false" afterPath="$PROJECT_DIR$/tpo poo/Space_Invaders/src/controlador/controlador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tpo poo/Space_Invaders/src/game/Bala.java" beforeDir="false" afterPath="$PROJECT_DIR$/tpo poo/Space_Invaders/src/game/Bala.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tpo poo/Space_Invaders/src/game/Jugador.java" beforeDir="false" afterPath="$PROJECT_DIR$/tpo poo/Space_Invaders/src/game/Jugador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tpo poo/Space_Invaders/src/game/Muro.java" beforeDir="false" afterPath="$PROJECT_DIR$/tpo poo/Space_Invaders/src/game/Muro.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tpo poo/Space_Invaders/src/game/Partida.java" beforeDir="false" afterPath="$PROJECT_DIR$/tpo poo/Space_Invaders/src/game/Partida.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tpo poo/Space_Invaders/src/game/Ranking.java" beforeDir="false" afterPath="$PROJECT_DIR$/tpo poo/Space_Invaders/src/game/Ranking.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -51,6 +69,7 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true"
   }
 }]]></component>

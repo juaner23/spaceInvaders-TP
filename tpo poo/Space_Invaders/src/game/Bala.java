@@ -1,4 +1,5 @@
 
+
 package game;
 import java.awt.Rectangle;
 public class Bala {
@@ -16,9 +17,8 @@ public class Bala {
         if (lanzador == 0) y -= velocidad;
         else {
             y += velocidad;
-            System.out.println("Bala invasor: x=" + x + ", y=" + y); // x debería ser constante (recto)
+            System.out.println("Bala invasor: x=" + x + ", y=" + y);
         }
-
     }
     public void desactivar() { activa = false; }
 
@@ -29,7 +29,8 @@ public class Bala {
     public int getAlto() { return alto; }
     public int getLanzador() { return lanzador; }
 
-
+    // AGREGADO para Daño/Muro (Asumimos daño de 1)
+    public int getDanio() { return 1; }
 
 
     public boolean colisionaCon(Invasor inv) {
@@ -38,8 +39,12 @@ public class Bala {
         Rectangle rI = new Rectangle((int)inv.getX(), (int)inv.getY(), inv.getAncho(), inv.getAlto());
         return rB.intersects(rI);
     }
-
-
-    public int getDanio() { return (lanzador == 0) ? 10 : 5; }
-
 }
+
+
+
+
+//para probar si anda
+    //public int getDanio(){
+    //return 1;
+  //  }

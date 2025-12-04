@@ -1,9 +1,8 @@
 
+
 import Gui.GamePanel;
-//empieza mi codigo -fati
 import game.Ranking;
 import controlador.controlador;
-//termino mi codigo -fati
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
@@ -14,10 +13,13 @@ public class Main {
             ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             ventana.setResizable(false);
 
-            GamePanel panel = new GamePanel();
+            GamePanel panel = new GamePanel(); // Crea la Vista
 
             controlador ctrl = controlador.obtenerInstancia();
             ctrl.setRanking(new Ranking());
+
+
+            ctrl.iniciarJuego();
 
             ventana.add(panel);
             ventana.pack();
